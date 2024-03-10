@@ -1,0 +1,21 @@
+<p>login works!</p>
+<form class="c">
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label >name</mat-label>
+          <input [(ngModel)]="username" matInput name="username">
+        </mat-form-field></td>
+        <td>
+            <mat-form-field>
+                <mat-label>Enter your password</mat-label>
+                <input [(ngModel)]="password" matInput  [type]="hide ? 'password' : 'text'" name="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+      </tr></table>
+  
+ 
+      <button mat-raised-button color="primary" (click)="checkUser()">add course</button>
+
+  </form>

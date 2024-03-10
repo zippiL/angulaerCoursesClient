@@ -1,0 +1,15 @@
+<mat-card class="card">
+    <mat-card-header>
+        <div mat-card-avatar class="header-image" [style.background-image]="'url(' + coursCategory?.url + ')'"></div>
+        <mat-card-title>{{courseToShow.nameCourse}}</mat-card-title>
+        <mat-card-subtitle>{{courseLecturer.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="courseToShow.image" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <!-- {{courseToShow.kodeKategory}} -->
+        {{courseToShow.amountLessons}}
+        {{courseToShow.wayLearning}}
+    </mat-card-content>
+    <button mat-raised-button color="primary" (click)="editDetail()">edit course</button>
+
+</mat-card>

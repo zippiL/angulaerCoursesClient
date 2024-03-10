@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 20px; /* הוספת רווח מהשוליים */
+}
+
+.hero img {
+  max-width: 90%; /* קטינות התמונה */
+}
+
+.caption {
+  margin-top: 20px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* מיושר לצד שמאל */
+  padding: 0 20px; /* הוספת רווח מהשוליים */
+}
+
+.text-block {
+  max-width: 700px;
+  text-align: left; /* מיושר לצד שמאל */
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.read-more {
+  margin-top: 20px;
+  text-align: center;
+}
