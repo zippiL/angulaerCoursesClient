@@ -1,6 +1,15 @@
 .container {
   display: flex;
   justify-content: space-between;
+  margin-right: 50px; /* הוספת רווח מימין */
+}
+
+h2 {
+  color: #007DEA; /* צבע הטקסט של ה־h2 */
+}
+button {
+  // background-color: #007DEA !important;
+  color: #007DEA !important; /* לבן כדי שהטקסט יהיה נגד רקע כהה */
 }
 
 .hero {

@@ -5,6 +5,7 @@ import { Course } from "../models/course.model";
 
 @Injectable()
 export class courseService {
+    courses: Course[];
 
     getCourse(): Observable<Course[]> {
         return this._http.get<Course[]>("/api/courses/");
@@ -21,6 +22,14 @@ export class courseService {
     deleteCourse(id: Number): Observable<boolean> {
         return this._http.delete<boolean>("/api/courses/" + id)
     }
+    checkCourse(cname: string,id:string) {
+        this.getCourse().subscribe(data => {
+          this.courses = data;
+        })
+        const course = this.courses.find(c => c.nameCourse===cname&&c._id === id);
+        return course;
+      }
+    
     constructor(private _http: HttpClient) {
 
     }

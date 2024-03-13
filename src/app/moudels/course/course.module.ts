@@ -11,7 +11,7 @@ import { courseService } from 'src/app/services/course.service';
 import { categoryService } from 'src/app/services/category.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {MatSelectModule} from '@angular/material/select';
@@ -21,13 +21,19 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterLink, RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule} from '@angular/material/dialog';
+import { SyllabusDialogComponent } from './syllabus-dialog/syllabus-dialog.component';
+import { LearningModeIconPipe } from './learning-mode-icon.pipe';
 
 @NgModule({
   declarations: [
     AllCoursesComponent,
     CourseDetailsComponent,
     AddcourseComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    SyllabusDialogComponent,
+    LearningModeIconPipe,
+    // WayLearningIconPipe
   ],
   imports: [
     CommonModule,
@@ -42,7 +48,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+
 
 
   ],

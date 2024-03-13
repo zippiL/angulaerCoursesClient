@@ -1,5 +1,56 @@
-.c{
-    background-image: url('../../../../assets/c.png');
-    background-size: cover; 
-    background-repeat: no-repeat;
-}
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px; /* הוספת רווח מימין */
+  }
+  
+
+  button {
+    // background-color: #007DEA !important;
+    color: #007DEA !important; /* לבן כדי שהטקסט יהיה נגד רקע כהה */
+  }
+  
+  .hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px; /* הוספת רווח מהשוליים */
+  }
+  
+  .hero img {
+    max-width: 75%; /* קטינות התמונה */
+  }
+  
+  .caption {
+    margin-top: 20px;
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* מיושר לצד שמאל */
+    padding: 0 20px; /* הוספת רווח מהשוליים */
+    margin-top: 10%;
+  }
+  
+  .text-block {
+    max-width: 700px;
+    text-align: left; /* מיושר לצד שמאל */
+  }
+  
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+
+  .card {
+    padding: 20px;
+    border-radius: 15px; /* שוליים עגולים */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* הטלת צל */
+    max-width: 400px; /* רוחב מרבי של הכרטיס */
+    width: 100%; /* רוחב מלא */
+  }

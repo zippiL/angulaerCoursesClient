@@ -1,15 +1,28 @@
 <mat-card class="card">
     <mat-card-header>
         <div mat-card-avatar class="header-image" [style.background-image]="'url(' + coursCategory?.url + ')'"></div>
-        <mat-card-title>{{courseToShow.nameCourse}}</mat-card-title>
-        <mat-card-subtitle>{{courseLecturer.name}}</mat-card-subtitle>
+        <mat-card-title>{{courseToShow?.nameCourse}}</mat-card-title>
+        <mat-card-subtitle>{{courseLecturer?.name}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [src]="courseToShow.image" alt="Photo of a Shiba Inu">
     <mat-card-content>
-        <!-- {{courseToShow.kodeKategory}} -->
-        {{courseToShow.amountLessons}}
-        {{courseToShow.wayLearning}}
-    </mat-card-content>
-    <button mat-raised-button color="primary" (click)="editDetail()">edit course</button>
+        <!-- {{courseToShow.syllabusArr}} -->
+        amount lesson: {{courseToShow?.amountLessons}}
+        <br>
+        <!-- {{courseToShow?.wayLearning}} -->
+        <!-- <p> {{ courseToShow?.wayLearning | learningModeIcon }} {{courseToShow?.wayLearning}}</p> -->
+        way-learning: <mat-icon>{{ courseToShow?.wayLearning | learningModeIcon }}</mat-icon>
 
+    </mat-card-content>
+
+  
+
+        <div style="display: flex;">
+            <button mat-button (click)="openDialog()">
+                <mat-icon>visibility_on</mat-icon>sylibus</button>
+            <button mat-raised-button color="primary" *ngIf="myCourse()" (click)="editDetail()">
+                <mat-icon>edit</mat-icon>edit course
+            </button>
+        </div>
+        
 </mat-card>

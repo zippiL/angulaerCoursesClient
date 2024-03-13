@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
+  login(){
+    this._router.navigate(['/login'])
+  }
+  register(){
+    this._router.navigate(['/register'])
+  }
+  constructor(private _router:Router){
 
+  }
 }

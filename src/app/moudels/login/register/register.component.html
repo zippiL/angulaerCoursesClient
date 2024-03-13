@@ -1,33 +1,43 @@
-<form [formGroup]="addUser" class="example-form" >
+<div class="container">
+  <section class="main-content">
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>name</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="address">
-      </mat-form-field></td>
-    </tr></table>
-  
+    <mat-card class="card">
+      <h2>register</h2>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-        <td><mat-form-field class="example-full-width">
-          <mat-label>mail</mat-label>
-          <input matInput formControlName="mail">
-        </mat-form-field></td>
-        <td>
-            <mat-form-field>
+      <form [formGroup]="addUser" class="example-form">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>name</mat-label>
+                <input matInput formControlName="name">
+              </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address">
+              </mat-form-field>
+       
+
+            <mat-form-field class="example-full-width">
+                <mat-label>mail</mat-label>
+                <input matInput formControlName="mail">
+              </mat-form-field>
+              <mat-form-field>
                 <mat-label>Enter your password</mat-label>
                 <input matInput formControlName="mail" [type]="hide ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
               </mat-form-field>
-      </tr></table>
-  
- 
-      <button mat-raised-button color="primary" (click)="saveUser()">add course</button>
 
-  </form>
+
+<br>
+        <button mat-raised-button  (click)="saveUser()">register</button>
+
+      </form>
+    </mat-card>
+  </section>
+  <section class="hero">
+    <img src="../../../../assets/b.png" alt="Hero Image" />
+
+  </section>
+</div>

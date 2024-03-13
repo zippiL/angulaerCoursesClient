@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
 import { Course } from 'src/app/models/course.model';
@@ -17,10 +17,6 @@ export class EditCourseComponent {
   selectedCategory: string;
   categories: Category[];
   private _currentCourse: Course;
-  //in save course to add a kode intiger
-  //in the forms to check the vvalidtors and to show the suitable error
-  //arr
-  // the kode of the lecture to add
 
   public get course(): Course {
     return this._currentCourse;
@@ -30,7 +26,7 @@ export class EditCourseComponent {
     "kodeKategory": new FormControl('', [Validators.required]),
     "amountLessons": new FormControl('', [Validators.required, Validators.min(1)]),
     "startCourseDate": new FormControl('', [Validators.required]),
-    "syllabusArr": new FormControl('', [Validators.required]),
+    "syllabusArr": this.fb.array([]), // שימוש ב-FormArray כאן
     "wayLearning": new FormControl('', [Validators.required]),
     "image": new FormControl('', [Validators.required])
   });
@@ -42,6 +38,8 @@ export class EditCourseComponent {
   courseToSave: Course;
   lect: Lecture;
   saveCourse() {
+    this.videosArr = this.MyFormGroup.value['syllabusArr'].filter(video => video.trim() !== '');
+
     this.categories.forEach(category => {
       if (category.name == this.MyFormGroup.value["kodeKategory"])
         this.MyFormGroup.value["kodeKategory"] = category._id;
@@ -61,7 +59,8 @@ export class EditCourseComponent {
     private _courseService: courseService,
     private _categoryService: categoryService,
     private _lecture: lectureService,
-    private _accr: ActivatedRoute) {
+    private _accr: ActivatedRoute,
+    private fb:FormBuilder) {
     this._categoryService.getCategory().subscribe(res => {
       this.categories = res;
     }, (err => {
@@ -86,6 +85,12 @@ export class EditCourseComponent {
             "kodeLecture": "",
             "image": this._currentCourse.image
           });
+          
+          const videosArr = this.MyFormGroup.get('syllabusArr') as FormArray;
+          this._currentCourse.syllabusArr.forEach(video => {
+            videosArr.push(this.fb.control(video));
+          });
+        
         })
       }
     })
@@ -95,4 +100,15 @@ export class EditCourseComponent {
       return "zoom"
     return "frontaly"
   }
+  videosArr: string[]
+  addVideo() {
+    const videosArr = this.MyFormGroup.get('syllabusArr') as FormArray;
+    videosArr.push(this.fb.control(''));
+  }
+
+  removeVideo(index: number) {
+    const videosArr = this.MyFormGroup.get('syllabusArr') as FormArray;
+    videosArr.removeAt(index);
+  }
+
 }

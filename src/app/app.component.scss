@@ -1,3 +1,18 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+  mat-toolbar {
+    background-color: #007DEA; /* צבע הרקע של התפריט */
+  }
+  
+  span {
+    margin-right: 20px; /* רווח בין הקישורים */
+  }
+  
+  a {
+    color: white; /* צבע הקישורים */
+  }
+  .spacer {
+    flex: 0.5 1 auto;
+    margin: 0 0 1px;
+  }

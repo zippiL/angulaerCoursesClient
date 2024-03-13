@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
-import { Course } from 'src/app/models/course.model';
+import { Course, WayLearning } from 'src/app/models/course.model';
 import { Lecture } from 'src/app/models/lecture.model';
 import { categoryService } from 'src/app/services/category.service';
 import { courseService } from 'src/app/services/course.service';
@@ -30,18 +30,21 @@ export class AddcourseComponent {
   }
   addCourse: FormGroup = new FormGroup({
 
-    "nameCourse": new FormControl("", Validators.required),
-    "kodeKategory": new FormControl("", Validators.required),
+    "nameCourse": new FormControl("", [Validators.required]),
+    "kodeKategory": new FormControl("", [Validators.required]),
     "amountLessons": new FormControl("", [Validators.required, Validators.minLength(0)]),
     "startCourseDate": new FormControl("", [Validators.required, this.notBeforeTodayValidator]),
-    "syllabusArr": new FormControl("", Validators.required),
-    "wayLearning": new FormControl("", Validators.required),
-    "image": new FormControl("", Validators.required),
+    "syllabusArr": this.fb.array([]),
+    "wayLearning": new FormControl("", [Validators.required]),
+    "image": new FormControl("", [Validators.required]),
   })
   categories: Category[];
   courseToSave: Course;
   lect: Lecture;
   saveCourse() {
+     if (this.addCourse.invalid) {
+    return; // אם הטופס אינו תקין, תעצור את הפונקציה כאן
+  }
     this.categories.forEach(cat => {
       if (cat.name == this.addCourse.value["kodeKategory"])
         this.addCourse.value["kodeKategory"] = cat._id;
@@ -53,7 +56,8 @@ export class AddcourseComponent {
       this.addCourse.value["amountLessons"],
       this.addCourse.value["startCourseDate"],
       this.addCourse.value["syllabusArr"],
-      this.addCourse.value["wayLearning"],
+      
+      this.convertStringToWayLearning(this.addCourse.value["wayLearning"]),
       this.lect._id,
       this.addCourse.value["image"]
     )
@@ -63,20 +67,36 @@ export class AddcourseComponent {
     alert("success!!!");
     this._router.navigate(["/allCourses"]);
   }
-  constructor(private _courseService: courseService, private _categoryService: categoryService, private _router: Router, private _lecture: lectureService) { }
+  constructor(private _courseService: courseService, private _categoryService: categoryService, private _router: Router, private _lecture: lectureService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
+ 
     this._categoryService.getCategory().subscribe(res => {
       this.categories = res;
     }, (err) => {
       console.log(err)
     })
-    this._lecture.getLectursesBypasname(localStorage.getItem('username'), localStorage.getItem('password')).subscribe(
+    this._lecture.getLectursesBypasname(sessionStorage.getItem('username'), sessionStorage.getItem('password')).subscribe(
       res => {
         this.lect = res;
       }
     )
   }
+
+  convertStringToWayLearning(value: string): number | undefined {
+    return WayLearning[value.toLowerCase() as keyof typeof WayLearning];
+  }
+  syllabusArr: string[]
+
+  addVideo() {
+    const syllabusArr = this.addCourse.get('syllabusArr') as FormArray;
+    syllabusArr.push(this.fb.control(''));
+  }
+  removeVideo(index: number) {
+    const syllabusArr = this.addCourse.get('syllabusArr') as FormArray;
+    syllabusArr.removeAt(index);
+  }
+
 
 
 }

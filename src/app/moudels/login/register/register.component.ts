@@ -23,8 +23,8 @@ export class RegisterComponent {
     this.userToAdd = new User(this.addUser["name"], this.addUser["address"], this.addUser["email"], this.addUser["password"]);
     this._userService.addUser(this.userToAdd).subscribe(res =>{
       console.log("register successfully!");
-      localStorage.setItem('username', this.addUser["name"]);
-      localStorage.setItem('password', this.addUser["password"]);
+      sessionStorage.setItem('username', this.addUser["name"]);
+      sessionStorage.setItem('password', this.addUser["password"]);
       this._rout.navigate(["/allCourses"]);
     }, err=>{
       console.log(err);

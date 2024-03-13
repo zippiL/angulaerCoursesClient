@@ -1,20 +1,15 @@
-<mat-toolbar color="primary">
-  
+<mat-toolbar>
+  <span>  <a routerLink="/home">home</a></span>
   <span> <a routerLink="/login">login</a></span>
   <span>  <a routerLink="/register">register</a></span>
   <span>  <a routerLink="/allCourses">allCourses</a></span>
   <span>  <a routerLink="/addCourses">addCourses</a></span>
-  <!-- <span>  <a routerLink="/courseDetails">courseDetails</a></span> -->
-  <span>  <a routerLink="/editCourse">editCourse</a></span>
-  
-  
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
+  <span><a (click)="logout()" routerLink="/login" routerLinkActive="active">Logout</a>
+  </span>
+  <span class="spacer">
+    <p *ngIf="connect()" style="color: white;">Hello to: {{name}}</p>
+
+  </span>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

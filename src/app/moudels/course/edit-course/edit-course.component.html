@@ -1,5 +1,4 @@
 <form [formGroup]="MyFormGroup">
-    <!-- JSON.stringify({{courseToSave}}) -->
     <mat-form-field>
         <mat-label>Enter course name</mat-label>
         <input matInput formControlName="nameCourse">
@@ -32,11 +31,22 @@
 
         </mat-select>
     </mat-form-field>
+    <ng-container *ngFor="let videoCtrl of MyFormGroup.get('syllabusArr')['controls']; let i = index">
+        <mat-form-field>
+            <mat-label>Enter video {{ i + 1 }}</mat-label>
+            <input matInput [formControl]="videoCtrl">
+            <button class="delete-button" mat-button style="font-size: 12px; width: 1%; height: auto;
+            margin-left: 90%; padding: 8px;" (click)="removeVideo(i)">X</button>
+        </mat-form-field>
+        </ng-container>
+        <button type="button" class="btn btn-primary" (click)="addVideo()">Add Video</button>
+
     <mat-form-field>
         <mat-label>image</mat-label>
         <input matInput formControlName="image" type="url">
         <img [src]="MyFormGroup.controls['image'].value" *ngIf="MyFormGroup.controls['image'].value"
             style="max-width: 100px; max-height: 100px;">
     </mat-form-field>
+    
     <button mat-raised-button color="primary" (click)="saveCourse()">add course</button>
 </form>

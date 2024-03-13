@@ -1,7 +1,14 @@
+<div style="display: flex; justify-content: center;">
+    <mat-form-field class="example-full-width">
+        <mat-label>search</mat-label>
+        <input matInput [(ngModel)]="searchText" (input)="onSearchInputChange()">
+    </mat-form-field>
+</div>
+
 <mat-grid-list cols="2" rowHeight="3:2">
-    <mat-grid-tile *ngFor="let course of courses">
+    <mat-grid-tile *ngFor="let course of filtercourses">
         <app-course-details [courseToShow]="course"></app-course-details>
         <!-- JSON.stringify({{course._id}}) -->
     </mat-grid-tile>
-   
-  </mat-grid-list>
+
+</mat-grid-list>

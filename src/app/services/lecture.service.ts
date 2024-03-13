@@ -22,6 +22,9 @@ export class lectureService{
       deleteLecturses(id : Number): Observable<boolean> {
         return this._http.delete<boolean>("/api/lecturers/" + id)
       }
+      loginLecturses(name: string, password: string): Observable<boolean> {
+        return this._http.post<boolean>("/api/lecturers/login", { name, password });
+    }
     constructor(private _http:HttpClient){
 
     } 

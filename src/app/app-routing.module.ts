@@ -7,16 +7,17 @@ import { AddcourseComponent } from './moudels/course/addcourse/addcourse.compone
 import { CourseDetailsComponent } from './moudels/course/course-details/course-details.component';
 import { EditCourseComponent } from './moudels/course/edit-course/edit-course.component';
 import { HomePageComponent } from './moudels/home-page/home-page.component';
+import { AuthGuardService } from './services/auth-guard-service.service';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch:  "full"},
   { path: "home",component:HomePageComponent},
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent},
-  { path: "allCourses", component: AllCoursesComponent},
-  { path: "addCourses", component: AddcourseComponent},
-  { path: "courseDetails", component: CourseDetailsComponent},
-  { path: "editCourse/:id", component: EditCourseComponent},
+  { path: "allCourses", component: AllCoursesComponent,canActivate:[AuthGuardService]},
+  { path: "addCourses", component: AddcourseComponent,canActivate:[AuthGuardService]},
+  { path: "courseDetails", component: CourseDetailsComponent,canActivate:[AuthGuardService]},
+  { path: "editCourse/:id", component: EditCourseComponent,canActivate:[AuthGuardService]},
 
 ];
 
