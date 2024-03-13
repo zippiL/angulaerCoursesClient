@@ -22,34 +22,29 @@
     <input type="date" matInput formControlName="startCourseDate">
 </mat-form-field>
 <mat-form-field>
-    <mat-label>syllabusArr</mat-label>
-    <input matInput formControlName="syllabusArr">
+  <mat-label>wayLearning</mat-label>
+  <mat-select formControlName="wayLearning">
+    <mat-option value="zoom">zoom</mat-option>
+    <mat-option value="frontaly">frontaly</mat-option>
+
+  </mat-select>
 </mat-form-field>
-<mat-form-field *ngFor="let videoCtrl of addCourse.get('syllabusArr')['controls']; let i = index">
-  <mat-label>Enter video {{ i + 1 }}</mat-label>
-  <input matInput [formControl]="videoCtrl">
-  <!-- <button class="delete-button" type="button" (click)="removeVideo(i)">
-    X
-  </button> -->
-  <button mat-button style="font-size: 12px; width: 1%; height: auto;
-  margin-left: 90%; padding: 8px;" (click)="removeVideo(i)">X</button>
+<mat-form-field>
+  <mat-label>image</mat-label>
+  <input matInput formControlName="image" type="url">
+  <img [src]="addCourse.controls['image'].value" *ngIf="addCourse.controls['image'].value" style="max-width: 100px; max-height: 100px;">
+</mat-form-field>
+<mat-form-field *ngFor="let videoCtrl of addCourse.get('syllabusArr')['controls']; let i = index" style="display: flex; align-items: center;">
+  <mat-label style="flex: 1;">Enter lesson {{ i + 1 }}</mat-label>
+  <div style="flex: 1; position: relative;">
+    <input matInput [formControl]="videoCtrl" style="width: 100%;">
+    <mat-icon  (click)="removeVideo(i)" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); cursor: pointer;">cancel</mat-icon>
+  </div>
 </mat-form-field>
 
 <!-- כפתור להוספת שדה קלט חדש -->
-<button type="button" class="btn btn-primary" (click)="addVideo()">Add Video</button>
-<mat-form-field>
-    <mat-label>wayLearning</mat-label>
-    <mat-select formControlName="wayLearning">
-      <mat-option value="zoom">zoom</mat-option>
-      <mat-option value="frontaly">frontaly</mat-option>
+<button mat-raised-button (click)="addVideo()">Add lesson</button>
 
-    </mat-select>
-</mat-form-field>
-<mat-form-field>
-    <mat-label>image</mat-label>
-    <input matInput formControlName="image" type="url">
-    <img [src]="addCourse.controls['image'].value" *ngIf="addCourse.controls['image'].value" style="max-width: 100px; max-height: 100px;">
-  </mat-form-field>
 <button mat-raised-button color="primary" (click)="saveCourse()">add course</button>
 </form>
 </div>

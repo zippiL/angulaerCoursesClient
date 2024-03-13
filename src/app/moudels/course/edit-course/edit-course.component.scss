@@ -1,0 +1,68 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  form {
+    width: 1800px;
+    margin: 10px auto;
+    margin-left: 50px;
+    margin-top: 25px;
+    border-radius: 8px;
+    mat-form-field {
+      background-color: transparent;
+      width: 200%;
+      border: none;
+    }
+    }
+  
+    fieldset {
+      margin-bottom: 30px;
+      border: none;
+      width: 100000px;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 8px;
+  
+      &.light {
+        font-weight: 300;
+        display: inline;
+      }
+    }
+  
+  .container {
+    background-position: right center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    display: flex;
+    justify-content: flex-start;
+    /* Align items to the start of the container */
+    align-items: center;
+    background-image:
+      url('../../../../assets/a.png');
+  }
+  
+  .container img {
+    width: 100%;
+    /* Set width for the image */
+    position: fixed;
+    top: 2%;
+  
+  }
+  
+  .container form {
+    width: 50%;
+    /* Set width for the form */
+    margin-right: 1000px;
+    // margin-left: 100px;
+  }
+
+
+
+
+  
+  
